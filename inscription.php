@@ -12,9 +12,20 @@ $sql ="SELECT * FROM `acces` WHERE `id`= :inscriptionEmail";
             $query->execute();
             $acces= $query->fetch();
 
+$sql ="SELECT * FROM `participants` WHERE `email`= :inscriptionEmail";
+            $query = $db->prepare($sql);
+            $query->bindvalue(":inscriptionEmail",$_SESSION["ID-Utilisateur"],PDO::PARAM_STR);
+            $query->execute();
+            $verifParticipant= $query->fetch();
+
+
 if ($_SESSION["ID-Utilisateur"]===null) {
     header("location:creercompte.php");
-} else {
+} else if ($verifParticipant !== null) {
+    header("location:dejarecord.php");
+}
+
+else {
 
     if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['age']) && !empty($_POST['email']) && !empty($_POST['adresse']) && !empty($_POST['phone']) && !empty($_POST['code']) && $_POST['reglement']==="on") {
         // echo("controle");
@@ -55,7 +66,7 @@ if ($_SESSION["ID-Utilisateur"]===null) {
                         $query->bindvalue(":etat",$InEtat,PDO::PARAM_STR);
                         $query->execute();
                         
-                        $_SESSION["ID"] = $verifEmail["id"];
+                        // $_SESSION["ID"] = $verifEmail["id"];
                         // echo("controle5");
                         if ($_POST["age"] >= '18') {
                             header("location:Choix-musique.php");
