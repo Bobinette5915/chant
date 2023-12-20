@@ -1,5 +1,7 @@
 <?php
 session_start();
+error_reporting(E_ALL);
+ini_set('display_errors', 1); 
 $title = "Suivi de dossier";
 include("includes/head.php");
 include("includes/connexionBDD.php");
@@ -11,7 +13,7 @@ $sql ="SELECT * FROM `acces` WHERE `id`= :inscriptionEmail";
             $query->execute();
             $acces= $query->fetch();
 
-if ($acces===null) {
+if ($acces === null) {
     header("location:connectUser.php");
 } else {
 

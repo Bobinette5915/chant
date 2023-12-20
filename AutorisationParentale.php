@@ -31,7 +31,7 @@ include("includes/navbar.php");
                         </div>
                         <div class="row gx-5 justify-content-center">
                             <div class="col-lg-10 col-xl-8">
-                            <a href="assets/Attestation.pdf" target="blank"><strong>Telecharger l'attestation parentale ICI</strong></a>
+                            <a href="assets/Attestation.pdf" target="blank"><strong>Telecharger l'attestation parentale ICI</strong></a><br><br>
                             <a href="Choix-musique.php" ><strong>Tout est OK? Lets go choisir ta musique</strong></a>
                             </div>
                         </div>

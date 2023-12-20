@@ -6,6 +6,12 @@ include("includes/head.php");
 include("includes/connexionBDD.php");
 session_start();
 
+$sql ="SELECT * FROM `acces` WHERE `id`= :inscriptionEmail";
+            $query = $db->prepare($sql);
+            $query->bindvalue(":inscriptionEmail",$_SESSION["ID-Utilisateur"],PDO::PARAM_STR);
+            $query->execute();
+            $acces= $query->fetch();
+
 if ($_SESSION["ID-Utilisateur"]===null) {
     header("location:creercompte.php");
 } else {
@@ -55,7 +61,7 @@ if ($_SESSION["ID-Utilisateur"]===null) {
                             header("location:Choix-musique.php");
                         }
                         else {
-                            header("location:Autorisationparentale.php");
+                            header("location:AutorisationParentale.php");
                         }
 
             }
@@ -114,7 +120,7 @@ include("includes/navbar.php");
                                             ?>
                                     <!-- Email address input-->
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="email" name="email" type="email" placeholder="email" value="<?php echo($_SESSION['ID-Utilisateur'])?>" />
+                                        <input class="form-control" id="email" name="email" type="email" placeholder="email" value="<?php echo($acces["mail"])?>" />
                                         <label for="email">Adresse email</label>
                                     </div>
 
