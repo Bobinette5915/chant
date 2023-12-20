@@ -2,6 +2,7 @@
 $title = "Choix du Titre";
 include("includes/head.php");
 include("includes/connexionBDD.php");
+include("API_musique.php");
 
 ?>
 

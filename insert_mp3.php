@@ -1,6 +1,6 @@
 <?php
-  error_reporting(E_ALL);
-ini_set('display_errors', 1);  
+  /*  error_reporting(E_ALL);
+ini_set('display_errors', 1);  */  
 $title = "Choix du Titre";
 include("includes/head.php");
 include 'includes/connexionBDD.php';
@@ -35,7 +35,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $query->execute();
                 // echo "Le fichier audio a été téléchargé avec succès. <br>";  
                 // echo($destination.'<br>')  ;  
-                // echo($controleID['id'])   ;        
+                // echo($controleID['id'])   ;     
+                   
             } 
             //else {
             //     echo "Une erreur s'est produite lors du téléchargement du fichier.";
@@ -99,6 +100,7 @@ include("includes/navbar.php");
                                     Une erreur est apparue lors du téléchargement du fichier.</div>');
                                 }
                             ?>
+                           
                         </div>
                     </div>
                 </div>

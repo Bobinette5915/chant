@@ -1,7 +1,7 @@
 <?php
 session_start();
-// error_reporting(E_ALL);
-// ini_set('display_errors', 1); 
+error_reporting(E_ALL);
+ini_set('display_errors', 1); 
 $title = "Suivi de dossier";
 include("includes/head.php");
 include("includes/connexionBDD.php");
@@ -11,7 +11,7 @@ $sql ="SELECT * FROM `acces` WHERE `id`= :inscription";
             $query = $db->prepare($sql);
             $query->bindvalue(":inscription",$_SESSION["ID-Utilisateur"],PDO::PARAM_STR);
             $query->execute();
-            $acces= $query->fetchAll();
+            $acces= $query->fetch();
 
 if ($acces === null) {
     header("location:connectUser.php");
@@ -19,7 +19,7 @@ if ($acces === null) {
 
   $sql ="SELECT * FROM `participants` WHERE `email`= :inscriptionEmail";
             $query = $db->prepare($sql);
-            $query->bindvalue(":inscriptionEmail",$_SESSION["ID-Utilisateur"],PDO::PARAM_STR);
+            $query->bindvalue(":inscriptionEmail",$acces["mail"],PDO::PARAM_STR);
             $query->execute();
             $participant= $query->fetch();
 
